@@ -17,10 +17,10 @@ TCEFORM.tt_content {
   frame_class {
     removeItems = 1,5,6,10,11,12,20,21
     addItems {
-      mission = DFG-Viewer: Mission
-      demo = DFG-Viewer: Demonstrator
-      metadata = DFG-Viewer: Metadaten
-      mailinglist = DFG-Viewer: Mailingliste
+      mission = DFG-Main: Mission
+      demo = DFG-Main: Demonstrator
+      metadata = DFG-Main: Metadaten
+      mailinglist = DFG-Main: Mailingliste
     }
   }
 

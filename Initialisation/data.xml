@@ -102,7 +102,7 @@
 				<rec index="1" type="array">
 					<uid>1</uid>
 					<pid>0</pid>
-					<title>DFG Viewer</title>
+					<title>DFG Main</title>
 					<relations index="rels" type="array"></relations>
 					<softrefs type="array">
 						<softref_element index="tsconfig_includes:ext_fileref:2" type="array">
@@ -115,7 +115,7 @@
 				<rec index="2" type="array">
 					<uid>2</uid>
 					<pid>1</pid>
-					<title>Viewer</title>
+					<title>Main</title>
 					<relations index="rels" type="array"></relations>
 					<softrefs type="array"></softrefs>
 				</rec>
@@ -4099,7 +4099,7 @@
 				<field index="perms_user" type="integer">31</field>
 				<field index="perms_group" type="integer">31</field>
 				<field index="perms_everybody" type="integer">1</field>
-				<field index="title">DFG Viewer</field>
+				<field index="title">DFG Main</field>
 				<field index="slug">/</field>
 				<field index="doktype" type="integer">1</field>
 				<field index="TSconfig"></field>
@@ -4188,7 +4188,7 @@
 				<field index="t3ver_tstamp" type="integer">0</field>
 				<field index="t3ver_move_id" type="integer">0</field>
 				<field index="title">Main TypoScript Rendering</field>
-				<field index="sitetitle">DFG-Viewer</field>
+				<field index="sitetitle">DFG-Main</field>
 				<field index="root" type="integer">1</field>
 				<field index="clear" type="integer">3</field>
 				<field index="include_static_file">EXT:fluid_styled_content/Configuration/TypoScript/,EXT:dlf/Configuration/TypoScript/,EXT:dfgviewer/Configuration/TypoScript</field>
@@ -4260,7 +4260,7 @@ config.kitodoPageView = 2</field>
 				<field index="perms_user" type="integer">31</field>
 				<field index="perms_group" type="integer">27</field>
 				<field index="perms_everybody" type="integer">0</field>
-				<field index="title">Viewer</field>
+				<field index="title">Main</field>
 				<field index="slug">/viewer</field>
 				<field index="doktype" type="integer">1</field>
 				<field index="TSconfig"></field>

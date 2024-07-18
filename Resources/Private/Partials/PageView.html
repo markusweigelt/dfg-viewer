@@ -50,14 +50,14 @@
         <div class="document-functions">
             <f:render partial="Provider" arguments="{_all}"/>
 
-            <f:if condition="{3d}">
+            <f:if condition="{is3DViewer}">
                 <f:else>
                     <f:render partial="Submenu" arguments="{_all}"/>
                 </f:else>
             </f:if>
         </div>
 
-        <f:if condition="{3d}">
+        <f:if condition="{is3DViewer}">
             <f:else>
                 <div class="view-functions">
                     <f:if condition="{gp-pagegrid} == 1">

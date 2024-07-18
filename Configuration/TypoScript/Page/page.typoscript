@@ -38,6 +38,9 @@ page {
       kitodoPageView = TEXT
       kitodoPageView.value = {$config.kitodoPageView}
 
+      embedded3DViewerPageView = TEXT
+      embedded3DViewerPageView.value = {$config.embedded3DViewerPageView}
+
       piwik_hostname = TEXT
       piwik_hostname.value = {$config.piwik_hostname}
 
@@ -86,4 +89,13 @@ page {
     }
   }
 }
+
+[getTSFE().id == {$config.embedded3DViewerPageView}]
+page {
+    bodyTag = <body class="embedded3dviewer">
+    10 {
+        file = EXT:dfgviewer/Resources/Private/Templates/Embedded3DViewer.html
+    }
+}
+
 [END]

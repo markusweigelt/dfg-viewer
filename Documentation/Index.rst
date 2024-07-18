@@ -13,7 +13,7 @@ Installation
 The current release 6.0 may be used with TYPO3 9.5 LTS or TYPO3 10.4 LTS.
 
 The extension is based on `Kitodo.Presentation (dlf) <https://github.com/kitodo/kitodo-presentation>`_. Before you can start to
-use the *DFG Viewer (dfgviewer)* in your TYPO3 installation, you have to install
+use the *DFG Main (dfgviewer)* in your TYPO3 installation, you have to install
 both extensions. The installation is only supported via Composer.
 Kitodo.Presentation will be installed and configured automatically.
 
@@ -21,7 +21,7 @@ System Requirements
 -------------------
 
 You need a webserver stack with Apache2 or Ngnix, PHP >= 7.3 and MySQL / MariaDB.
-Debian 10 (buster) is known to work with Kitodo.Presentation 3.2 and DFG-Viewer 5.2.
+Debian 10 (buster) is known to work with Kitodo.Presentation 3.2 and DFG-Main 5.2.
 
 We recommend at least:
 
@@ -61,9 +61,9 @@ browser. Just follow the 4 steps. You need your MySQL/MariaDB credentials of cou
     # Test your backend login:
     http://example.com/typo3/
 
-The DFG-Viewer extension assumes the default language is German (&L=0). An
+The DFG-Main extension assumes the default language is German (&L=0). An
 additionial "website-language" English (&L=1) will be created automatically on
-installing the DFG-Viewer extension. This is only relevant for localization of
+installing the DFG-Main extension. This is only relevant for localization of
 the metadata and structures labels.
 
 Recommended Steps after Installation
@@ -84,20 +84,20 @@ You can set this easily with the TYPO3-console::
     ./vendor/bin/typo3cms configuration:set 'FE/pageNotFoundOnCHashError' 0
 
 Now you have a working TYPO3 9.5 LTS installation and you can continue with composer
-to install DFG-Viewer extension.
+to install DFG-Main extension.
 
 
-Install DFG-Viewer and Kitodo.Presentation via Composer
+Install DFG-Main and Kitodo.Presentation via Composer
 -------------------------------------------------------
 
 Composer commands::
 
     # make sure you haven't set the platform php version to 7.2
     composer config platform.php 7.3
-    # install DFG-Viewer extension
+    # install DFG-Main extension
     composer require slub/dfgviewer:^6.0
 
-This will install the DFG-Viewer 6.0 extension and Kitodo.Presentation 4.0 from
+This will install the DFG-Main 6.0 extension and Kitodo.Presentation 4.0 from
 `Packagist <https://github.com/slub/dfg-viewer>`_.
 
 Install the Extension via extension manager or CLI::
@@ -108,10 +108,10 @@ Install the Extension via extension manager or CLI::
 During the installation, three pages will be created: a root page, the "Kitodo
 Configuration" folder and the viewer itself.
 
-Configure DFG-Viewer and Kitodo.Presentation
+Configure DFG-Main and Kitodo.Presentation
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The DFG-Viewer is almost configured. Only the Page-ID-constants have to be
+The DFG-Main is almost configured. Only the Page-ID-constants have to be
 checked and adjusted. Go to the template module and use the constant editor to
 fit your installation.
 
@@ -147,7 +147,7 @@ security feature by the setting above.
 
 This will cause now an uncached delivery of the viewer page.
 
-Empty Viewer Page
+Empty Main Page
 ~~~~~~~~~~~~~~~~~
 
 You may notice from time to time, the viewer page keeps empty even though you
@@ -173,10 +173,10 @@ Add this setting to your *typo3conf/LocalConfiguration.php*::
 
 Tip: Use the admin backend module: Settings -> Configure Installation-Wide Options
 
-Re-Install the DFG-Viewer extension
+Re-Install the DFG-Main extension
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-If you want to reinstall the DFG-Viewer extension, the metadata and structure
+If you want to reinstall the DFG-Main extension, the metadata and structure
 records won't be created a second time. To force this, you have to delete the
 entry in table 'sys_registry'.
 

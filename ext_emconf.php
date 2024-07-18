@@ -23,7 +23,7 @@
 ***************************************************************/
 
 $EM_CONF[$_EXTKEY] = [
-    'title' => 'DFG Viewer',
+    'title' => 'DFG Viewer 2',
     'description' => 'Remote resources navigator for digital libraries. Reads METS/MODS and METS/TEI via OAI-PMH.',
     'category' => 'distribution',
     'author' => 'Sebastian Meyer',
