@@ -28,6 +28,36 @@ plugin.tx_dlf {
     }
     settings {
         storagePid = {$config.storagePid}
+        validatorStack {
+            mets {
+                30 {
+                    title = Saxon Validator
+                    className = Kitodo\Dlf\Validation\SaxonValidator
+                    breakOnError = false
+                    configuration {
+                        jar = /var/www/html/public/typo3conf/ext/dlf/Resources/Private/Saxon/saxon-he-10.6.jar
+                        xsl = /var/www/html/public/typo3conf/ext/dlf/Resources/Private/Saxon/ddb_validierung_mets-mods-ap-digitalisierte-medien.xsl
+                    }
+                }
+                10 {
+                    title = OAI Validator
+                    className = Kitodo\Dlf\Validation\XsdValidator
+                    breakOnError = false
+                    configuration {
+                        schema = /var/www/html/public/typo3conf/ext/dlf/Resources/Public/Xsd/OAI-PMH.xsd
+                    }
+                }
+                20 {
+                    title = METS Validator
+                    className = Kitodo\Dlf\Validation\XsdValidator
+                    breakOnError = false
+                    configuration {
+                        schema = /var/www/html/public/typo3conf/ext/dlf/Resources/Public/Xsd/mets.xsd
+                    }
+                }
+
+            }
+        }
     }
 	view {
 		partialRootPaths {
