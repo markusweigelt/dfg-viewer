@@ -28,27 +28,34 @@ plugin.tx_dlf {
     }
     settings {
         storagePid = {$config.storagePid}
-        validatorStack {
+        validationStacks {
             mets {
                 10 {
-                    title = OAI Validator
-                    className = Kitodo\Dlf\Validation\XsdValidator
+                    title = XML Schemes Validator
+                    className = Kitodo\Dlf\Validation\XmlSchemesValidator
                     breakOnError = false
                     configuration {
-                        schema = /var/www/html/public/typo3conf/ext/dlf/Resources/Public/Xsd/OAI-PMH.xsd
+                        oai {
+                            namespace = http://www.openarchives.org/OAI/2.0/
+                            schemaLocation = https://www.openarchives.org/OAI/2.0/OAI-PMH.xsd
+                        }
+                        mets {
+                            namespace = http://www.loc.gov/METS/
+                            schemaLocation = http://www.loc.gov/standards/mets/mets.xsd
+                        }
+                        mods {
+                            namespace = http://www.loc.gov/mods/v3
+                            schemaLocation = http://www.loc.gov/standards/mods/mods.xsd
+                        }
+                        dfgviewer {
+                            namespace = http://dfg-viewer.de/
+                            schemaLocation = /var/www/html/public/typo3conf/ext/dfgviewer/Resources/Public/Xsd/dfg-viewer.xsd
+                        }
                     }
                 }
                 20 {
-                    title = METS Validator
-                    className = Kitodo\Dlf\Validation\XsdValidator
-                    breakOnError = false
-                    configuration {
-                        schema = /var/www/html/public/typo3conf/ext/dlf/Resources/Public/Xsd/mets.xsd
-                    }
-                }
-                30 {
-                    title = Saxon Validator
-                    className = Kitodo\Dlf\Validation\SaxonValidator
+                    title = DDB-METS/MODS XSL Validator
+                    className = Kitodo\Dlf\Validation\SaxonXslToSvrlValidator
                     breakOnError = false
                     configuration {
                         jar = /var/www/html/public/typo3conf/ext/dlf/Resources/Private/Saxon/saxon-he-10.6.jar
