@@ -53,14 +53,18 @@ plugin.tx_dlf {
                         }
                     }
                 }
-                20 {
-                    title = DDB-METS/MODS XSL Validator
-                    className = Kitodo\Dlf\Validation\SaxonXslToSvrlValidator
-                    breakOnError = false
-                    configuration {
-                        jar = /var/www/html/public/typo3conf/ext/dlf/Resources/Private/Saxon/saxon-he-10.6.jar
-                        xsl = /var/www/html/public/typo3conf/ext/dlf/Resources/Private/Saxon/ddb_validierung_mets-mods-ap-digitalisierte-medien.xsl
-                    }
+                //20 {
+                //    title = DDB-METS/MODS XSL Validator
+                //    className = Kitodo\Dlf\Validation\SaxonXslToSvrlValidator
+                //    breakOnError = false
+                //    configuration {
+                //        jar = /var/www/html/public/typo3conf/ext/dlf/Resources/Private/Saxon/saxon-he-10.6.jar
+                //        xsl = /var/www/html/public/typo3conf/ext/dlf/Resources/Private/Saxon/ddb_validierung_mets-mods-ap-digitalisierte-medien.xsl
+                //    }
+                //}
+                30 {
+                    title = Application Profile Validation
+                    className = Slub\Dfgviewer\Validation\ApplicationProfileValidationStack
                 }
             }
         }
