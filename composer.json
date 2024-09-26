@@ -43,8 +43,12 @@
     "license": "GPL-3.0-or-later",
     "require": {
         "typo3/cms-core": "^10.4|^11.5",
-        "kitodo/presentation": "^5.0|dev-master",
+        "kitodo/presentation": "@dev",
         "slub/slub-digitalcollections": "^4.0|dev-master"
+    },
+    "require-dev": {
+        "spatie/phpunit-watcher": "^1.23.6",
+        "typo3/testing-framework": "^7.1.0"
     },
     "autoload": {
         "psr-4": {
@@ -59,7 +63,13 @@
     "scripts": {
         "docs:setup": "./Build/Documentation/sphinx.sh install",
         "docs:serve": "./Build/Documentation/sphinx.sh serve",
-        "docs:t3": "docker-compose -f ./Build/Documentation/docker-compose.t3docs.yml run --rm t3docs"
+        "docs:t3": "docker-compose -f ./Build/Documentation/docker-compose.t3docs.yml run --rm t3docs",
+        "test:unit:local": [
+          "phpunit -c Build/Test/UnitTests.xml"
+        ],
+        "test:unit:watch": [
+          "phpunit-watcher watch -c Build/Test/UnitTests.xml"
+        ]
     },
     "config": {
         "allow-plugins": {
