@@ -2,6 +2,14 @@
 
 namespace Slub\Dfgviewer\Validation;
 
+/**
+ * The validator validates against the rules outlined in chapter 2.1 of the application profile 2.3.1.
+ *
+ * @package TYPO3
+ * @subpackage dfg-viewer
+ *
+ * @access public
+ */
 class LogicalStructureValidator extends ApplicationProfileBaseValidator
 {
 
@@ -9,6 +17,7 @@ class LogicalStructureValidator extends ApplicationProfileBaseValidator
     {
         parent::setValue($value);
 
+        // Validates against the rules of chapter "2.1.1 Logical structure - mets:structMap"
         if ($this->xpath->query('//mets:structMap[@TYPE="LOGICAL"]')->length == 0) {
             $this->addError('Every METS file has to have at least one logical structural element.', 1723727164447);
         }
@@ -19,19 +28,22 @@ class LogicalStructureValidator extends ApplicationProfileBaseValidator
     }
 
     /**
+     * Validates the structural elements.
+     *
+     * Validates against the rules of chapter "2.1.2.1 Structural element - mets:div"
+     *
      * @return void
      */
     private function validateStructuralElements(): void
     {
         $structuralElements = $this->xpath->query('//mets:structMap[@TYPE="LOGICAL"]/mets:div');
         if ($structuralElements->length == 0) {
-            $this->addError('Every logical structure has to consist of at least on mets:div.', 1724234607);
+            $this->addError('Every logical structure has to consist of at least one mets:div.', 1724234607);
         } else {
             foreach ($structuralElements as $structuralElement) {
                 if (!$structuralElement->hasAttribute("ID")) {
                     $this->addError('Mandatory "ID" attribute of mets:div in the logical structure is missing.', 1724234607);
                 }
-
                 if (!$structuralElement->hasAttribute("TYPE")) {
                     $this->addError('Mandatory "TYPE" attribute of mets:div in the logical structure is missing.', 1724234607);
                 } else {
@@ -44,6 +56,10 @@ class LogicalStructureValidator extends ApplicationProfileBaseValidator
     }
 
     /**
+     * Validates the external references.
+     *
+     * Validates against the rules of chapter "2.1.2.2 Reference to external METS-files - mets:div / mets:mptr"
+     *
      * @return void
      */
     private function validateExternalReference(): void
@@ -59,10 +75,14 @@ class LogicalStructureValidator extends ApplicationProfileBaseValidator
                     $this->addError('Value "' . $externalReference->getAttribute("LOCTYPE") . '" of "LOCTYPE" attribute of mets:mptr in the logical structure is not permissible.', 1724234607);
                 }
             }
-
             if (!$externalReference->hasAttribute("xlink:href")) {
                 $this->addError('Mandatory "xlink:href" attribute of mets:mptr in the logical structure is missing.', 1724234607);
+            } else {
+                if (!filter_var($externalReference->getAttribute("xlink:href"), FILTER_VALIDATE_URL)) {
+                    $this->addError('URL of attribute value "xlink:href" of mets:mptr in the logical structure is not valid.', 1727792902);
+                }
             }
+
         }
     }
 

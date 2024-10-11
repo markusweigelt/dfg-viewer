@@ -9,3 +9,15 @@
 
 # Page
 <INCLUDE_TYPOSCRIPT: source="DIR:./Page/" extensions="typoscript">
+
+# Content Elements
+lib.contentElement {
+    templateRootPaths.200 = EXT:dfgviewer/Resources/Private/Templates/ContentElements/
+}
+
+tt_content {
+    dfgviewer_metsvalidatior =< lib.contentElement
+    dfgviewer_metsvalidatior {
+        templateName = MetsValidator
+    }
+}

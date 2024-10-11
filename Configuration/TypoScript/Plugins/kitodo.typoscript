@@ -52,7 +52,7 @@ plugin.tx_dlf {
                     }
                 }
             }
-            //20 {
+            // 20 {
             //    title = DDB-METS/MODS XSL Validator
             //    className = Kitodo\Dlf\Validation\SaxonXslToSvrlValidator
             //    breakOnError = false
