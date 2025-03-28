@@ -27,6 +27,7 @@ namespace Slub\Dfgviewer\Validation\Common;
 
 use DOMNode;
 use DOMXPath;
+use Slub\Dfgviewer\Common\LanguageHelper;
 use Slub\Dfgviewer\Common\ValidationHelper;
 use TYPO3\CMS\Extbase\Error\Error;
 use TYPO3\CMS\Extbase\Error\Result;
@@ -107,6 +108,33 @@ class DomNodeValidator
     }
 
     /**
+     * Validate that the node has an attribute with a ISO 639-2/B value.
+     *
+     * @param string $name The attribute name
+     * @return $this
+     */
+    public function validateHasAttributeWithIso6392B(string $name): DomNodeValidator
+    {
+        if (!isset($this->node) || !$this->isElementType()) {
+            return $this;
+        }
+
+        // @phpstan-ignore-next-line
+        if (!$this->node->hasAttribute($name)) {
+            return $this->validateHasAttribute($name);
+        }
+
+        // @phpstan-ignore-next-line
+        $value = $this->node->getAttribute($name);
+
+        if (LanguageHelper::iso6392BCodeExists($value)) {
+            $this->result->addError(new Error('Value "' . $value . '" in the "' . $name . '" attribute on node "' . $this->node->getNodePath() . '" is not a valid ISO 639-2/B code. For more information, please consider https://www.loc.gov/standards/iso639-2/php/code_list.php.', 1743159957));
+        }
+
+        return $this;
+    }
+
+    /**
      * Validate that the node has an attribute with a URL value.
      *
      * @param string $name The attribute name
@@ -127,7 +155,7 @@ class DomNodeValidator
         $value = $this->node->getAttribute($name);
 
         if (!preg_match('/^' . ValidationHelper::URL_REGEX . '$/i', $value)) {
-            $this->result->addError(new Error('URL "' . $value . '" in the "' . $name . '" attribute of "' . $this->node->getNodePath() . '" is not valid.', 1736504189));
+            $this->result->addError(new Error('URL "' . $value . '" in the "' . $name . '" attribute on node "' . $this->node->getNodePath() . '" is not valid.', 1736504189));
         }
 
         return $this;
@@ -154,7 +182,7 @@ class DomNodeValidator
         // @phpstan-ignore-next-line
         $value = $this->node->getAttribute($name);
         if (!in_array($value, $values)) {
-            $this->result->addError(new Error('Value "' . $value . '" in the "' . $name . '" attribute of "' . $this->node->getNodePath() . '" is not permissible.', 1736504197));
+            $this->result->addError(new Error('Value "' . $value . '" in the "' . $name . '" attribute on node "' . $this->node->getNodePath() . '" is not permissible.', 1736504197));
         }
 
         return $this;
@@ -181,7 +209,7 @@ class DomNodeValidator
         // @phpstan-ignore-next-line
         $value = $this->node->getAttribute($name);
         if ($this->xpath->query($contextExpression . '[@' . $name . '="' . $value . '"]')->length > 1) {
-            $this->result->addError(new Error('"' . $name . '" attribute with value "' . $value . '" of "' . $this->node->getNodePath() . '" already exists.', 1736504203));
+            $this->result->addError(new Error('Attribute "' . $name . '" with value "' . $value . '" on node "' . $this->node->getNodePath() . '" already exists.', 1736504203));
         }
 
         return $this;
@@ -212,7 +240,26 @@ class DomNodeValidator
 
         // @phpstan-ignore-next-line
         if (!$this->node->hasAttribute($name)) {
-            $this->result->addError(new Error('Mandatory "' . $name . '" attribute of "' . $this->node->getNodePath() . '" is missing.', 1736504217));
+            $this->result->addError(new Error('Mandatory attribute "' . $name . '" is missing on node "' . $this->node->getNodePath() . '".', 1736504217));
+        }
+        return $this;
+    }
+
+    /**
+     * Validate that the node does not have any attribute with the name.
+     *
+     * @param string $name The attribute name
+     * @return $this
+     */
+    public function validateHasNoneAttribute(string $name): DomNodeValidator
+    {
+        if (!isset($this->node) || !$this->isElementType()) {
+            return $this;
+        }
+
+        // @phpstan-ignore-next-line
+        if ($this->node->hasAttribute($name)) {
+            $this->result->addError(new Error('Attribute "' . $name . '" is not allowed on node "' . $this->node->getNodePath() . '".', 1736504217));
         }
         return $this;
     }
@@ -245,7 +292,7 @@ class DomNodeValidator
         }
 
         if ($foundElements !== 1) {
-            $this->result->addError(new Error('Value "' . $identifier . '" in the "' . $name . '" attribute of "' . $this->node->getNodePath() . '" must reference one element under XPath expression "' . $targetExpression, 1736504228));
+            $this->result->addError(new Error('Value "' . $identifier . '" in the "' . $name . '" attribute on node "' . $this->node->getNodePath() . '" must reference one element under XPath expression "' . $targetExpression, 1736504228));
         }
 
         return $this;
