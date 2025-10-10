@@ -10,19 +10,16 @@
 
 
 /* ==============[ buttons and control elements ]================= */
-.document-view.multiview {
-
-    > .page-control,
-    .view-functions ul li.pages,
-    .document-functions ul li.grid {
-        display: none;
+.document-view {
+    &.multiview {
+        > .page-control,
+        .view-functions ul li.pages,
+        .document-functions ul li.grid {
+            display: none;
+        }
     }
 
     .document-functions {
-        .provider {
-            background-color: lighten(@light-blue, 20%);
-        }
-
         > ul > li {
             &.add-multiview-document {
                 > a {

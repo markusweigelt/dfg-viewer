@@ -219,10 +219,10 @@
                     </li>
                 </f:then>
             </f:if>
-            <f:if condition="{gp-multiview}">
-                <li class="submenu add-multiview-document">
-                    <f:cObject typoscriptObjectPath="plugin.tx_dlf_adddocumenttool"/>
-                </li>
+            <li class="submenu add-multiview-document">
+                <f:cObject typoscriptObjectPath="plugin.tx_dlf_adddocumenttool"/>
+            </li>
+            <f:if condition="{multiview}">
                 <li>
                     <a href="#" class="reset-gridstack-layout" title="{f:translate(key:'multiview.reset_layout', extensionName:'dfgviewer')}">
                         {f:translate(key:'multiview.reset_layout', extensionName:'dfgviewer')}

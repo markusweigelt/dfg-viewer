@@ -310,7 +310,7 @@ plugin.tx_dlf_audioplayer {
         is3dObject = TEXT
         is3dObject.value = 1
     }
-[END]
+[GLOBAL]
 
 # --------------------------------------------------------------------------------------------------------------------
 # newspaper navigation
@@ -320,18 +320,18 @@ page.10.variables {
   isNewspaper = TEXT
   isNewspaper.value = newspaper_anchor
 }
-[END]
+[GLOBAL]
 
 [getDocumentType({$plugin.tx_dlf.persistence.storagePid}) == "year"]
 page.10.variables {
   isNewspaper = TEXT
   isNewspaper.value = newspaper_year
 }
-[END]
+[GLOBAL]
 
 [getDocumentType({$plugin.tx_dlf.persistence.storagePid}) == "issue"]
 page.10.variables {
   isNewspaper = TEXT
   isNewspaper.value = newspaper_issue
 }
-[END]
+[GLOBAL]
