@@ -72,7 +72,7 @@ class NodeListValidator extends AbstractDomValidator
         } catch (Exception $e) {
             $errorMessage = $e->getMessage();
             // Remove the NodeListValidator from error message
-            $errorMessage = substr($errorMessage, 0, strrpos($errorMessage, ' in'));
+            // s$errorMessage = substr($errorMessage, 0, strrpos($errorMessage, ' in'));
             $errorMessage = $errorMessage . ' that matches the XPath expression "' . $this->expression . '"';
             if ($this->contextNode) {
                 $errorMessage .= ' under "' . $this->contextNode->getNodePath() . '"';
